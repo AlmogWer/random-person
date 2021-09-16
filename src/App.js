@@ -25,7 +25,25 @@ function App() {
     const {
       login: { password },
     } = person;
-    console.log(data);
+    const { first, last } = person.name;
+    const { age } = person.dob;
+    const {
+      street: { number, name },
+    } = person.location;
+    const newPerson = {
+      image,
+      phone,
+      email,
+      password,
+      age,
+      street: `${number} ${name}`,
+      name: `${first} ${last}`,
+    };
+
+    setPerson(newPerson);
+    setLoading(false);
+    setTitle("name");
+    setValue(newPerson.name);
   };
 
   useEffect(() => {
@@ -87,7 +105,7 @@ function App() {
               <FaLock />
             </button>
           </div>
-          <button className="btn" type="button">
+          <button className="btn" type="button" onClick={getPerson}>
             {loading ? "loading..." : "random user"}
           </button>
         </div>
